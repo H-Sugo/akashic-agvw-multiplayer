@@ -184,7 +184,6 @@ services:
       - POSTGRES_DB=postgres
     volumes:
       - ferretdb-postgres-volume:/var/lib/postgresql/data
-    # コンチE��の起動チェチE��
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
       interval: 5s

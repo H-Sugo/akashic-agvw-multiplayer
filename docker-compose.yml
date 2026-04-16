@@ -68,7 +68,8 @@ services:
       NODE_ENV: test
       LANG: ja_JP.UTF8
     volumes:
-      - /var/tmp:/var/log/akashic
+      - ./config:/home/akashic/app/config
+      - ./servers/playlog-server/config:/home/akashic/app/servers/playlog-server/config
     depends_on:
       - database
       - mongodb
@@ -109,6 +110,9 @@ services:
     environment:
       NODE_ENV: test
       LANG: ja_JP.UTF8
+    volumes:
+      - ./config:/home/akashic/app/config
+      - ./servers/system-api-server/config:/home/akashic/app/servers/system-api-server/config
     depends_on:
       - database
       - mongodb

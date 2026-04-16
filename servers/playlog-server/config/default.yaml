@@ -2,7 +2,10 @@ server:
   port: 4100
 # middleware
 tokenValidator:
-  type: redis
+  # redis ではなく、直接 permissionServer (system-api-server) を通じて検証するように設定
+  type: permissionServer
+  permissionServer:
+    url: http://system-api-server:3100
   redis:
     repository:
       host: redis
@@ -14,13 +17,11 @@ tokenValidator:
     hosts:
       - host: database
         port: 3306
-    database: akashic
+    database: akashic_dev
     user: akashic
     password: pw
     pool: true
     poolConnectionLimit: 40
-  permissionServer:
-    url: http://system-api-server:3100
 rabbitmq:
   url:
     - amqp://rabbitmq
@@ -32,7 +33,7 @@ datastore:
   backend: mongodb
   mongodb:
     url: mongodb://mongodb
-    database: akashic
+    database: akashic_test
 dispatchingRedis:
   host: redis
   port: 6379
@@ -41,7 +42,7 @@ dispatchingRedis:
 mysql:
   host: database
   port: 3306
-  database: akashic
+  database: akashic_dev
   user: akashic
   password: pw
   supportBigNumbers: true
@@ -55,6 +56,8 @@ s3:
 archiveSettings:
   bucket: playlog-store
 # akashic system
+security:
+  permissionSecret: "the_very_secure_secret_key"
 playServer:
   url: http://system-api-server:3100
 storageServer:

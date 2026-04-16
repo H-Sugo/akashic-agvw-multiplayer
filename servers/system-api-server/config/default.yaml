@@ -11,7 +11,7 @@ dbSettings:
     hosts:
       - host: database
         port: 3306
-    database: akashic
+    database: akashic_dev
     user: akashic
     password: pw
     pool: true
@@ -24,7 +24,7 @@ redis:
 contentStorage:
   redis:
     host: redis-content-storage-node-0
-    port: 6401
+    port: 6379
     option:
       password: ""
 dispatching:
